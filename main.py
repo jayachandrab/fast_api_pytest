@@ -39,7 +39,7 @@ async def read_todo(todo_id: str):
 async def update_todo(todo_id: str, updated_todo:Todo):
     todo = todos.get(todo_id)
     if not todo:
-        return HTTPException(status_code=404, detail="Deatails not found")
+        raise HTTPException(status_code=404, detail="Deatails not found")
     todos[todo_id] = updated_todo
     return updated_todo
 
@@ -50,6 +50,6 @@ async def update_todo(todo_id: str, updated_todo:Todo):
 async def delete_todo(todo_id: str):
     todo = todos.get(todo_id)
     if not todo:
-        return HTTPException(status_code=404, detail="Deatails not found")
+        raise HTTPException(status_code=404, detail="Deatails not found")
     del todos[todo_id]
     return todo
